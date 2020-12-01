@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package proto;
+
+message Keepalive {
+  bool is_responder = 1;
+}

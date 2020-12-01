@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package proto.utils;
+
+enum MessageTarget {
+  UNKNOWN = 0;
+  INTERNAL = 1;
+  UI = 2;
+  WORKER = 3;
+  CONTROLLER = 4;
+  BRIDGE = 5;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto;
+
+message GetCertRequest {
+  string code = 1;
+  bytes temp_public_key = 2;
+  bytes nonce = 3;
+}
+
+message GetCertResponse {
+  bytes encrypted_cert = 1;
+  bytes temp_public_key = 2;
+  bytes encrypted_key = 3;
+}

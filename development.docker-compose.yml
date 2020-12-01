@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  daemon:
+    build: 
+      context: daemon/.
+      dockerfile: controller.development.Dockerfile
+    hostname: daemon
+    volumes:
+      - ./daemon:/usr/src/app/daemon
+      - ./proto:/usr/src/app/daemon/proto
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RACK_ENV=development
+      - DATABASE_URL=mysql2://root:miningctl@db:3306/miningctl
+      - CIPHER=AES-256-CBC
+      - RSA_KEY_SIZE=4096
+      - CA_CERT_NAME=/CN=Mining Controller CA/DC=phala
+      - DAEMON_CERT_NAME=/CN=Mining Controller Daemon/DC=phala
+      - PHALA_NODE_URL_FOR_WORKERS=ws://192.168.89.128:9944
+    depends_on:
+      - redis
+      - db
+      - phala-node
+      - cproxy
+    ports:
+      - '9292:9292'
+
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: always
+    hostname: redis
+    volumes:
+      - 'redis-data:/data'
+    ports:
+      - '63791:6379' # debug
+
+  db:
+    build: mysql/.
+    hostname: db
+    command: [--default-authentication-plugin=mysql_native_password]
+    volumes:
+      - 'db-data:/var/lib/mysql'
+    ports:
+      - '33061:3306' # debug
+    environment:
+      - MYSQL_ROOT_PASSWORD=miningctl
+      - MYSQL_DATABASE=miningctl
+
+  phala-node:
+    image: phalanetwork/phala-poc3-node:latest
+    hostname: phala-node
+    environment:
+      - NODE_NAME=phala-dev-mining
+    volumes:
+      - 'node-data:/root/data'
+    ports:
+      - '9944:9944' # debug
+
+  cproxy:
+    build: 
+      context: cproxy/.
+      dockerfile: development.Dockerfile
+    hostname: cproxy
+    volumes:
+      - './cproxy:/usr/src/app/cproxy'
+    environment: []
+    depends_on:
+      - redis
+      - phala-node
+    ports:
+      - '9229:9229' # debug
+      - '7070:7070' # debug
+
+volumes:
+  db-data:
+  redis-data:
+  node-data:
+

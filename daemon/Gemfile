@@ -1,0 +1,52 @@
+source 'https://rubygems.org'
+
+gem 'cuba', '~> 3.9', '>= 3.9.3'
+gem 'falcon', '~> 0.36.4'
+
+gem "rerun", "~> 0.13.0", :group => :development
+
+gem "async-http", "~> 0.52.4"
+
+gem "async-http-faraday", "~> 0.9.0"
+gem "async", "~> 1.26"
+gem "faraday", "~> 1.0"
+gem "logger", "~> 1.4"
+
+gem "google-protobuf", "~> 3.12"
+
+gem "activesupport", "~> 6.0", :require => [
+  "active_support/core_ext"
+]
+
+gem "builder", "~> 3.2"
+
+gem "activerecord", "~> 6.0"
+
+gem "zeitwerk", "~> 2.3"
+
+gem "rake", "~> 13.0"
+
+gem "mysql2", "~> 0.5.3"
+
+gem "async-websocket", "~> 0.15.0"
+
+gem "bcrypt", "~> 3.1"
+
+gem "async-redis", "~> 0.5.0"
+
+gem "kaminari-activerecord", "~> 1.2"
+
+group 'test' do
+  gem 'cutest'
+  gem 'rack-test', '~> 1.1', require: 'rack/test'
+end
+
+gem "ohm", "~> 3.1"
+gem "ohm-contrib", "~> 3.0"
+
+gem "scale.rb", "~> 0.2.12"
+
+group 'development' do
+  gem 'debase'
+  gem 'ruby-debug-ide'
+end

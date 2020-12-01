@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="daemon" type="RubyRunConfigurationType" factoryName="Ruby" singleton="false">
+    <module name="daemon" />
+    <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
+    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/../../daemon" />
+    <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+    <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+    <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+    <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+      <COVERAGE_PATTERN ENABLED="true">
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+      </COVERAGE_PATTERN>
+    </EXTENSION>
+    <EXTENSION ID="RubyDockerContainerSettingsRunConfigurationExtension" dockerComposeCommand="EXEC" />
+    <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/../../daemon/daemon.rb" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+    <method v="2" />
+  </configuration>
+</component>

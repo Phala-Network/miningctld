@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+message Error {
+  enum Status {
+    OK = 0;
+    SOME_ERROR = 1;
+    SERVER_ERROR = 100;
+    NOT_FOUND_ERROR = 200;
+    UNAUTHORIZED = 201;
+    BAD_REQUEST_ERROR = 202;
+  }
+  Status status = 1;
+  string message = 2;
+  string name = 3;
+}

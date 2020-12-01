@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package proto;
+
+import "models/utils/account.proto";
+
+message WorkerShouldRun {
+  Account account = 1;
+  string ws_url = 2;
+}

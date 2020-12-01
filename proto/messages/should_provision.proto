@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package proto;
+
+import "models/daemon_info.proto";
+
+message ShouldProvision {
+  message Info {
+    DaemonInfo controller_daemon_info = 1;
+    DaemonInfo daemon_info = 2;
+  }
+  bytes encrypted_info = 1;
+  bytes temp_public_key = 2;
+}

@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  daemon:
+    build:
+      context: daemon/.
+      dockerfile: worker.testing.Dockerfile
+    image: phalanetwork/miningctld-worker:testing
+    hostname: daemon
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RACK_ENV=development
+      - CIPHER=AES-256-CBC
+      - RSA_KEY_SIZE=4096
+      - CA_CERT_NAME=/CN=Mining Controller CA/DC=phala
+      - DAEMON_CERT_NAME=/CN=Mining Controller Daemon/DC=phala
+    depends_on:
+      - redis
+      - pruntime
+    ports:
+      - '9292:9292'
+
+  pruntime:
+    image: phalanetwork/phala-poc3-pruntime:latest
+    restart: always
+    hostname: pruntime
+    volumes:
+      - 'pruntime-data:/root/data'
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+      - "/dev/sgx/provision:/dev/sgx/provision"
+
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: always
+    hostname: redis
+    volumes:
+      - 'redis-data:/data'
+    ports:
+      - '63791:6379' # debug
+
+volumes:
+  redis-data:
+  pruntime-data:

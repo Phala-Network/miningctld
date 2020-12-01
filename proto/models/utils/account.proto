@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package proto;
+
+message Account {
+  string account_id = 1;
+  string public_key = 2;
+  string secret_phrase = 3;
+  string secret_seed = 4;
+  string ss58_address = 5;
+}

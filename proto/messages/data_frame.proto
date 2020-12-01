@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package proto;
+
+import "models/data_session.proto";
+
+message DataFrame {
+  string uuid = 1;
+  DataSession session = 2;
+  bytes raw_data = 3;
+  // oneof data {
+
+  // }
+}

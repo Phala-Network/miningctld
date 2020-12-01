@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto;
+
+import "models/worker_info.proto";
+import "models/controller_info.proto";
+import "models/bridge_info.proto";
+
+message DaemonInfo {
+  enum Role {
+    UNSET = 0;
+    WORKER = 1;
+    CONTROLLER = 2;
+    BRIDGE = 3;
+  }
+
+  string uuid = 1;
+  string public_key =  2;
+  Role role = 3;
+
+  oneof role_info {
+    WorkerInfo worker_info = 4;
+    ControllerInfo controller_info = 5;
+    BridgeInfo bridge_info = 6;
+  }
+}

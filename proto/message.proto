@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+
+import "models/utils/empty.proto";
+import "models/utils/message_target.proto";
+import "models/worker_info.proto";
+
+import "messages/error.proto";
+import "messages/keepalive.proto";
+import "messages/request_provisioning.proto";
+import "messages/should_provision.proto";
+import "messages/data_frame.proto";
+import "messages/worker_should_run.proto";
+
+message TunnelMessage {
+  utils.MessageTarget source = 1;
+  utils.MessageTarget target = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string ref = 4; // uuid
+  repeated string related_refs = 5;
+
+  oneof payload {
+    Error error = 6;
+    utils.Empty empty = 7;
+    Keepalive keepalive = 8;
+    RequestProvisioning request_provisioning = 9;
+    ShouldProvision should_provision = 10;
+    DataFrame data_frame = 11;
+    WorkerInfo report_worker_info = 12;
+    WorkerShouldRun worker_should_run = 13;
+  };
+}
+
+message Message {
+  bool encrypted = 1;
+  oneof payload {
+    bytes encrypted_message = 2;
+    TunnelMessage message = 3;
+  }
+}

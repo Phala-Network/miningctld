@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto;
+
+import "models/utils/account.proto";
+import "models/worker_states.proto";
+
+message WorkerInfo {
+  Account account = 1;
+  string description = 2;
+  WorkerStates states = 3;
+
+  enum Status {
+    UNKNOWN = 0;
+    IDLE = 1;
+    SYNCING = 2;
+    WAITING = 3;
+    INTENTION_SET = 4;
+    ERROR = 5;
+  }
+  Status status = 4;
+}

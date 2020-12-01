@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+
+import "models/daemon_info.proto";
+
+message DataSession {
+  DaemonInfo initiator = 1;
+  DaemonInfo responder = 2;
+  google.protobuf.Timestamp created_at = 3;
+
+  enum Type {
+    UNSET = 0;
+    PHALA_TEE = 1;
+    PHALA_BRIDGE = 2;
+  }
+  Type type = 4;
+  
+  string uuid = 5;
+}

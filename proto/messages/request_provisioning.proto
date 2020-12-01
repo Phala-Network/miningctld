@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package proto;
+
+message RequestProvisioning {
+  bytes cert = 1;
+  bytes temp_public_key = 2;
+  bytes nonce = 3;
+}

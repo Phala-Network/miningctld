@@ -48,8 +48,8 @@ RUN chown -R app:app /app && chmod g+s /app
 ENV APP_PORT 7070
 EXPOSE ${APP_PORT}
 # Check container health by running a command inside the container
-HEALTHCHECK --interval=5s \
-            --timeout=5s \
+HEALTHCHECK --interval=5m \
+            --timeout=10s \
             --retries=6 \
             CMD curl -fs http://localhost:${APP_PORT}/ || exit 1
 # Set NODE_ENV to 'development' if --build-arg DEBUG=1, or 'production'

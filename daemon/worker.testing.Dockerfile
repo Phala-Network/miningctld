@@ -7,8 +7,8 @@ COPY --from=0 /root .
 ENV PATH="/root:${PATH}"
 
 RUN apt-get install apt-transport-https
-RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
-RUN sed -i 's#http://security.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
+# RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
+# RUN sed -i 's#http://security.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
 
 RUN apt-get update
 
@@ -23,8 +23,8 @@ RUN apt-get install -y \
     protobuf-compiler \
     curl
 
-RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
-RUN bundle config mirror.https://rubygems.org https://gems.ruby-china.com/
+# RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+# RUN bundle config mirror.https://rubygems.org https://gems.ruby-china.com/
 
 WORKDIR /usr/src/app
 

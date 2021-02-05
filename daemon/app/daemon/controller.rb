@@ -4,6 +4,6 @@ class Daemon::Controller
 
   def initialize(parent)
     @parent = parent
-    @chain_conn = Substrate::Connection.new
+    # @chain_conn = Substrate::Connection.new
   end
 end

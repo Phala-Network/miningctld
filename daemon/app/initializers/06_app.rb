@@ -2,7 +2,7 @@ Dir["#{APP_PATH}/models/**/*.rb"].each { |f| require f }
 Dir["#{APP_PATH}/utils/**/*.rb"].each { |f| require f }
 Dir["#{APP_PATH}/handlers/**/*.rb"].each { |f| require f }
 
-Cuba.use Rack::Session::Cookie, :secret => ENV['API_COOKIE_SECRET']
+Cuba.use Rack::Session::Cookie, :secret => ENV['API_COOKIE_SECRET'] || SecureRandom.uuid
 
 Cuba.plugin GetSetterPlugin
 Cuba.plugin ActiveRecordPlugin

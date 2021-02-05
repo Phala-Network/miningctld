@@ -1,14 +1,9 @@
-FROM rustlang/rust:nightly-buster-slim
-
-WORKDIR /root
-
-RUN rustup target add wasm32-unknown-unknown --toolchain nightly
-RUN cargo install --root . --force subkey --git https://github.com/paritytech/substrate --version 2.0.0
+FROM parity/subkey:latest
 
 FROM ruby:2.7-slim-buster
 
 WORKDIR /root
-COPY --from=0 /root .
+COPY --from=0 /usr/local/bin /usr/local/bin
 
 RUN apt-get install apt-transport-https
 # RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
@@ -38,6 +33,6 @@ COPY Gemfile.lock .
 RUN bundle install
 
 WORKDIR /usr/src/app/daemon
-ENV PATH="/root/bin:${PATH}"
+ENV PATH="/usr/local/bin:${PATH}"
 
 CMD ["bash", "./start.sh"]

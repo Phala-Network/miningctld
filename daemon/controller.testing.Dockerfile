@@ -1,9 +1,4 @@
-FROM rustlang/rust:nightly-buster-slim
-
-WORKDIR /root
-
-RUN rustup target add wasm32-unknown-unknown --toolchain nightly
-RUN cargo install --root . --force subkey --git https://github.com/paritytech/substrate --version 2.0.0
+FROM parity/subkey:latest
 
 FROM ruby:2.7-slim-buster
 
@@ -44,6 +39,6 @@ WORKDIR /usr/src/app/daemon
 COPY . .
 
 RUN bundle install
-ENV PATH="/root/bin:${PATH}"
+ENV PATH="/usr/local/bin:${PATH}"
 
 CMD ["bash", "./start.sh"]

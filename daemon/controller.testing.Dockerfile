@@ -3,9 +3,9 @@ FROM parity/subkey:latest
 FROM ruby:2.7-slim-buster
 
 WORKDIR /root
-COPY --from=0 /root .
-ENV PATH="/root:${PATH}"
+COPY --from=0 /usr/local/bin /usr/local/bin
 
+RUN apt-get install apt-transport-https
 # RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
 # RUN sed -i 's#http://security.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
 
